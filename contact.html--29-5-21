@@ -1,0 +1,249 @@
+<!--
+Author: AnyaWebSolution
+Author URL: http://anyawebsolution.com
+-->
+<?php
+include('mail/PHPMailerAutoload.php');
+    
+if(isset($_POST['submit']))
+{
+
+    $name = $_POST['name'];
+    $mobile = $_POST['phone'];
+    $email = $_POST['email'];
+    $location = $_POST['location'];
+    $message = $_POST['msg'];
+    
+  if(empty($name))
+  {
+    $errorlog = 'Name is Empty';
+  }
+  else if(empty($mobile))
+  {
+    $errorlog = 'Mobile is Empty';
+  }
+  else if(empty($email))
+  {
+    $errorlog = 'Email is Empty';
+  }
+  else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+  {
+    $errorlog = 'Email is Not Valid';
+  }
+  else if(empty($location))
+  {
+    $errorlog = 'Location is Empty';
+  }
+  else if(empty($message))
+  {
+    $errorlog = 'Message is Empty';
+  }
+  else
+  {
+    $msg=' <div class="mail-msg">
+      <table style="width:600px;margin:50px auto;border:1px solid
+        #DDDDDD" width="700" cellspacing="0" cellpadding="0" border="0"
+        align="center">
+        <tbody>
+          <tr>
+            <td
+              style="padding:10px;background-color:#dc1d2b;color:#FFF;"
+              colspan="2" valign="middle" align="left">
+              <h1 style="font-family:sans-serif; text-align: center;">Anya Web Solution</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:30px;" colspan="2" valign="middle"
+              align="left">
+              <p style="font-family:sans-serif;color:#dc1d2b; margin: 0px; padding: 0px;"><strong>Dear Admin</strong><br>
+                <br>A new user details : </p>
+              <ul style="list-style: none; margin-top:10px; padding: 0px; font-family: lato; line-height: 1.7;">
+
+                <li style="margin: 0px; padding: 0px;"><strong>Name :</strong> '.$name.'</li>
+                <li style="margin: 0px; padding: 0px;"><strong>Email :</strong> '.$email.'</li>
+                <li style="margin: 0px; padding: 0px;"><strong>Mobile No :</strong> '.$mobile.'</li>
+                <li style="margin: 0px; padding: 0px;"><strong>Location :</strong> '.$location.'</li>
+                <li style="list-style: none; margin: 0px; padding: 0px;"><strong>Message :</strong>'.$message.'</li>
+              </ul>
+              <br>
+              <br>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>';
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->SMTPDebug = 0;
+        $mail->Host = "mail.anyawebsolution.in";
+        $mail->Port = 587;
+        //$mail->SMTPSecure = "ssl";
+        $mail->SMTPAuth = true;
+        $mail->Username = "donotreply@anyawebsolution.in";
+        $mail->Password = 'g.oE89oTU#gR';
+        $mail->setFrom('donotreply@anyawebsolution.in', 'anyawebsolution');
+        $mail->addAddress('anyawebsolution@gmail.com', 'anyawebsolution');
+        $mail->Subject = 'Mail from '.$name;
+        $mail->msgHTML($msg);
+        $mail->send();
+        header('location:thanks');
+        return true;
+    } catch (phpmailerException $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    } catch (Exception $e) {
+         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+    
+
+              
+   }
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+
+    <!-- Custom Theme files -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+
+<body>
+
+    <?php
+    include "includes/header.php";
+    ?>
+    
+    <!-- main -->
+    <main>
+        <div id="breadcrumb-bg" class="">
+            <div class="container-fluid">
+                <div class="breadcrumb-link">
+                    <h3 data-aos="fade-right"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    data-aos-offset="0"
+                    data-aos-once="true">Contact Us</h3>
+                    <p data-aos="fade-left"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    data-aos-offset="0"
+                    data-aos-once="true">
+                        <a href="index.html" title="Home">Home /</a>
+                        <span>
+                            <a class="active" href="contact.html">Contact Us</a>
+                        </span> 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- google map -->
+        <section id="contact">
+            <div class="container-fluid">
+                <h2>Contact Us</h2>
+                <div class="row mt-5">
+                    <div class="col-md-4 border border-left-0 border-top-0 border-bottom-0" data-aos="fade-right"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="400"
+                    data-aos-offset="0"
+                    data-aos-once="true">
+                        <h3 class="mb-4">Contact Information</h3>
+                        <div class="row justify-content-start">
+                            <div class="col-md-2 col-sm-2 col-2">
+                                <i class="fa fa-map-marker fa-2x"></i>
+                                <i class="fa fa-phone fa-2x"></i>
+                                <i class="fa fa-envelope-o fa-2x"></i>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-10">
+                                <h5>Anya Web Solution</h5>
+                                <p>First Floor Durgapuri Chowk, Loni Rd, Shahdara,<br> Delhi, 110093</p><br>
+                                <h5>Mobile</h5>
+                                <p>+91 90242-44886 , +91 92696-98122</p><br>
+                                <h5>Email</h5>
+                                <p>info@anyawebsolution.in</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8" data-aos="fade-zoom-in"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="500"
+                    data-aos-offset="0"
+                    data-aos-once="true">
+                        <h3 class="text-center mb-4">Let's get together and talk</h3>
+                        <p class="mb-4">Please fill up the form given below to connect with us.Anya Web Solution representative will
+                            contact you as soon as possible.
+                        </p>
+                        <form action="#" method="POST">
+                            <div class="form-row">
+                              <div class="col-md-6 mb-4">
+                                <input type="text" class="control" name="name" value="<?=$name?>" id="Name" placeholder="Name" required>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                <input type="email" class="control" name="email" value="<?=$email?>" id="Email" placeholder="Email Id" required>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="col-md-6 mb-4">
+                                <input type="text" class="control" name="phone" value="<?=$phone?>" id="Phone" onkeypress="return event.charCode >=48 && event.charCode <=57 || event.charCode==43 || event.charCode==40 || event.charCode==41 || event.charCode==45" placeholder="Phone" required>
+                              </div>
+                              <div class="col-md-6 mb-4">
+                                <input type="text" class="control" name="location" value="<?=$location?>" id="Location" placeholder="Your Location" required>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-4">
+                                    <textarea class="control" id="Msg" name="msg" placeholder="Message" cols="30" rows="6" required><?=$msg?></textarea>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" id="Button" name="submit" type="submit">Submit</button>
+                            <?=$errorlog?>
+                        </form>
+                    </div>
+                </div>  
+                <div class="mapouter"data-aos="fade-zoom-in"
+                data-aos-easing="ease-in-back"
+                data-aos-delay="400"
+                data-aos-offset="0"
+                data-aos-once="true"><div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=anyawebsolution&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://yggtorrent-fr.com"></a><br><style>.mapouter{position:relative;text-align:right;height:400px;width:100%;}</style><a href="https://www.embedgooglemap.net">google maps iframe generator</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:400px;width:100%;}</style></div></div>          
+            </div>
+        </section>
+        <!-- //google map -->
+        
+    </main>
+    <!-- //main -->
+
+    <?php
+    include "includes/footer.php";
+    ?>
+
+    <!-- Custom Theme files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="scroll.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="js/query.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+</body>
+
+</html>

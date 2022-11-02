@@ -1,0 +1,79 @@
+.mySwiper-01{
+    width: 100%;
+   height: auto !important;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper{
+    margin-left: auto;
+    margin-right: auto;
+}
+.mySwiper-01 .swiper-button-prev:after, .mySwiper-01 .swiper-button-next:after {   
+    min-width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    background: #0000;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-button-prev{
+    left: 20px;
+}
+.swiper-button-next{
+    right: 20px;
+}
+.mySwiper-02 .swiper-slide{
+    display: block !important;
+}
+.price-area .swiper-button-prev:after, .price-area .swiper-button-next:after {   
+    min-width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    background: #0000;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    color: #000;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.price-area .swiper-button-prev{
+    left: 20px;
+}
+.price-area .swiper-button-next{
+    right: 20px;
+}

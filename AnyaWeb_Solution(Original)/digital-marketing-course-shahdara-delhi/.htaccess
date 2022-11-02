@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^digitalmarketingcourses\.assk\.in$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.digitalmarketingcourses\.assk\.in$
+RewriteRule ^/?$ "http\:\/\/www\.assk\.in\/digital\-marketing\-course\.php" [R=301,L]
+
